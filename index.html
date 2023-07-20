@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 12px;
+            
+
+        }
+        @media (max-width:900px) {
+            *{
+                font-size: 9px;
+            }
+        }
+        @media (max-width:500px) {
+            *{
+                font-size: 6px;
+            }
+        }
+        .round{
+            background: #48FCAE;
+            transform-origin: 50% 95%;
+            box-shadow: 2px 0px 5px rgba(128, 128, 128, 0.483);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-top-left-radius: 20%;
+            border-top-right-radius: 20%;
+            
+            
+        }
+        .second{
+            height: 18rem;
+            width: 0.5rem;
+            background-color: #4AC8E8;
+            transform: rotate(calc(var(--seconds)*6*1deg));
+        }
+        .minute{
+            height: 20rem;
+            width: 1rem;
+            transform: rotate(calc(var(--minutes)*6*1deg));
+        }
+        .hours{
+            height: 15rem;
+            width: 1.2rem;
+            transform: rotate(calc(var(--hours)*30*1deg));
+        }
+        .circle{
+            position: absolute;
+            width: 44rem;
+            height: 44rem;
+            z-index: 0;
+            border-radius: 100%;
+            background: white;
+            overflow: hidden;
+            
+            
+        }
+        .circle > div{
+            width: 100%;
+            height: 100%;
+            background: url("https://img.freepik.com/premium-vector/seamless-modern-gray-geometric-shape-background_592487-1126.jpg");
+            opacity: 0.1;
+        }
+        .con{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48rem;
+            height: 48rem;
+            z-index: 0;
+            border-radius: 100%;
+            background: linear-gradient(#DCEEF2,#B5D99C);
+            background: linear-gradient(#82FF7F,#CEFF7B);
+            box-shadow: 10px 0px 25px rgba(128, 128, 128, 0.483);
+            
+
+        }
+        .cover{
+            position: absolute;
+            height: 3rem;
+            width: 3rem;
+            border-radius: 100%;
+            background: #CEFF7B;
+        }
+        #time{
+            font-size: 10rem;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            box-sizing: border-box;
+            padding-bottom: 2rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <div style="width: 100%; height:100%;background: white;display: flex; justify-content: center;align-items: center; padding: 10rem; flex-direction: column;">
+        <div style="position: relative; display: flex;justify-content: center;
+        align-items: center;">
+            <div class="con">
+                <div class="circle">
+                    <div></div>
+                </div>
+            </div>
+            <div  style="position: relative; height: 1rem; width: 1rem ;display: flex; justify-content: center;align-items: center; ">
+                <div class="second round"></div>
+                <div class="minute round"></div>
+                <div class="hours round"></div>
+                <div class="cover"></div>
+            </div>
+        </div>
+        <div class="time-con" style="position: absolute;bottom: 0;flex-grow: 1;">
+            <div>
+                <div class=" " style="position: relative; top: 0;
+                left: 0;
+                width: 100%; height: 100%; background: linear-gradient(#82FF7F,#CEFF7B);background-clip: text;-webkit-background-clip: text;color: transparent;">
+                <div id="time"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const html= document.documentElement
+    const time = document.getElementById("time");
+    setInterval(()=>{
+        var today = new Date(); 
+        var sec = today.getSeconds()
+        var min = today.getMinutes()
+        var hour = today.getHours()
+        html.style.setProperty("--seconds",sec)
+        html.style.setProperty("--minutes",min)
+        html.style.setProperty("--hours",hour)
+        if(hour>12){
+            hour-=12
+        }
+        time.innerHTML=""+hour+" : "+min+" : "+sec
+    console.log(sec);
+    },1000)
+
+</script>
+</html>
